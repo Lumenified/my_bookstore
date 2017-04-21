@@ -1,0 +1,23 @@
+<!-- app/templates/errors/404.html -->
+
+{% extends "base.html" %}
+{% block title %}Sayfa Bulunamadi{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div style="text-align: center">
+            <h1> Daha Fazla Bilgi Icin </h1>
+            <h3> <a href="https://en.wikipedia.org/wiki/HTTP_404">Aradiginiz sayfa burada olabilir.</a> </h3>
+            <hr class="intro-divider">
+            <a href="{{ url_for('home.anasayfa') }}" class="btn btn-default btn-lg">
+                <i class="fa fa-home"></i>
+                Anasayfa
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

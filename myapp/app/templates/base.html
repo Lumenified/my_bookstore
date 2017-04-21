@@ -1,0 +1,74 @@
+<!-- app/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }} | Project Dream Team</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified JavaScript -->
+    <!--<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="{{ url_for('home.anasayfa') }}">Kutuphane</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+              {% if current_user.is_admin %}
+                <li><a href="{{ url_for('home.admin_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('admin.kitap_liste') }}">Kitaplar</a></li>
+                <li><a href="{{ url_for('admin.kategori_liste') }}">Kategoriler</a></li>
+                <li><a href="{{ url_for('admin.kiralama_listesi') }}">Kirala</a></li>
+              {% else %}
+                <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
+              {% endif %}
+              <li><a href="{{ url_for('uye.cikis') }}">Logout</a></li>
+              <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+            {% else %}
+              <li><a href="{{ url_for('home.anasayfa') }}">Anasayfa</a></li>
+              <li><a href="{{ url_for('uye.kayit') }}">Kayit</a></li>
+              <li><a href="{{ url_for('uye.giris') }}">Giris</a></li>
+            {% endif %}
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+      {% block body %}
+      {% endblock %}
+      <div class="push"></div>
+    </div>
+    <footer class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; bottom: 0px; width: 100%; padding:0 0 0 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                      <li><a href="{{ url_for('home.anasayfa') }}">Anasayfa</a></li>
+                      <li class="footer-menu-divider">⋅</li>
+                      <li><a href="{{ url_for('uye.kayit') }}">Kayit</a></li>
+                      <li class="footer-menu-divider">⋅</li>
+                      <li><a href="{{ url_for('uye.giris') }}">Giris</a></li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright © 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

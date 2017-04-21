@@ -1,0 +1,65 @@
+<!-- app/templates/admin/kiralama/listesi.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Kitap Kiralama{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Uyeler</h1>
+        {% if uyeler %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Isim </th>
+                  <th width="30%"> Kitap Sayisi </th>
+                  <th width="30%"> Adresler </th>
+                  <th width="15%"> Kirala </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for uye in uyeler %}
+                {% if uye.is_admin %}
+                    <tr style="background-color: #aec251; color: white;">
+                        <td> <i class="fa fa-key"></i> Admin </td>
+                        <td> N/A </td>
+                        <td> N/A </td>
+                        <td> N/A </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                      <td> {{ uye.first_name }} {{ uye.last_name }} </td>
+                      <td>
+
+                          {{ uye.kitaplar.count() }}
+
+                      </td>
+                      <td>
+
+                          {{ uye.adres }}
+                      </td>
+                      <td>
+                        <a href="{{ url_for('admin.kitap_kirala', id=uye.id) }}">
+                          <i class="fa fa-user-plus"></i> Kirala
+                        </a>
+                      </td>
+                    </tr>
+                {% endif %}
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

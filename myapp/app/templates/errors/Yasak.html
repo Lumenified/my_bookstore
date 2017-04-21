@@ -1,0 +1,23 @@
+<!-- app/templates/errors/Yasak.html -->
+
+{% extends "base.html" %}
+{% block title %}Yasak{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div style="text-align: center">
+            <h1> Yasak </h1>
+            <h3> Sanirsam izinsiz alana girmeye calistiniz. </h3>
+            <hr class="intro-divider">
+            <a href="{{ url_for('home.anasayfa') }}" class="btn btn-default btn-lg">
+                <i class="fa fa-home"></i>
+                Anasayfa
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
