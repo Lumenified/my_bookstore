@@ -1,2 +1,2 @@
 # myapp
-here is an unworth app for the newbies.
+here is an unworthy app for the newbies.
